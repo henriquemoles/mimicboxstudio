@@ -13,8 +13,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Jorgin",
-  description: "Jorgin",
+  title: "MimicboxStudio",
+  description: "MimicboxStudio",
 };
 
 export default function RootLayout({

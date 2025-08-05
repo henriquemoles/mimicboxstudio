@@ -1,21 +1,16 @@
-import { getProjectById } from '@/data/projects';
 import { ProjectDetail } from '@/components/ProjectDetail';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import { getProjectById } from '@/data/projects';
+import { notFound } from 'next/navigation';
 
-interface ProjectPageProps {
-  params: {
-    projectId: string;
-  };
-}
+type Params = Promise<{ projectId: string }>;
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
-  // await params se for Promise (não usual, mas vamos forçar tipo)
-  const { projectId } = await Promise.resolve(params);
-
+export default async function ProjectPage(props: { params: Params }) {
+  const { projectId } = await props.params;            // ✅ await the params
   const project = await getProjectById(projectId);
 
   if (!project) {
-    return <div>Projeto não encontrado</div>;
+    notFound();
   }
 
   return (

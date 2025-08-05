@@ -215,9 +215,9 @@ export const projects: Project[] = [
     team: ['Hygor Domingues'],
     detailedDescription: {
       pt: '',
-      en: 'Developed character concept art for a Christmas commercial by the Portuguese supermarket Continente. The project included designing an outfit inspired by singer Ana Castela, for the mascot Popota.'
+      en: 'Developed character concept art for a Christmas commercial by the Portuguese supermarket Continente. The project included designing an outfit inspired by singer Ana Castela, for the mascot Popota. Here is the video of the commercial: https://www.youtube.com/watch?v=EapdZAiEfPY&list=PLqdfFpDax4_4PtMZuCi5Y0vP6wg2tjlTa&index=2'
     },
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop',
+    image: '/assets/projects/Popota/Nebula 1.png',
     overview: {
       pt: 'Este projeto envolveu a criação de uma splash art épica para um personagem guerreiro em um card game fantasy. O objetivo era capturar a essência heroica e poderosa do personagem, transmitindo sua força e determinação através de uma composição dinâmica e cores vibrantes.',
       en: 'This project involved creating an epic splash art for a warrior character in a fantasy card game. The goal was to capture the heroic and powerful essence of the character, conveying their strength and determination through dynamic composition and vibrant colors.'
@@ -231,10 +231,10 @@ export const projects: Project[] = [
       en: 'We developed a dramatic lighting approach focusing on the character\'s face and weapon, using strong contrasts and a limited but impactful color palette. The composition was structured to guide the player\'s eye.'
     },
     gallery: [
-      'https://www.youtube.com/watch?v=EapdZAiEfPY',
-        '../../assets/logo.png',
-      'https://www.youtube.com/watch?v=EapdZAiEfPY&list=PLqdfFpDax4_4PtMZuCi5Y0vP6wg2tjlTa&index=2',
-      'https://images.unsplash.com/photo-1566404791232-af9fe0ae8e4b?w=800&h=600&fit=crop'
+      '/assets/projects/Popota/Nebula 1.png',
+      '/assets/projects/Popota/Nebula 2.png',
+      '/assets/projects/Popota/Nebula 3.png',
+      '/assets/projects/Popota/Nebula 4.png',
     ],
     process: {
       pt: [
@@ -271,7 +271,7 @@ export const projects: Project[] = [
       pt: '',
       en: 'Developed character concept art for a Christmas commercial by the Portuguese supermarket Continente. The project included designing an outfit inspired by singer Ana Castela, for the mascot Popota.'
     },
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop',
+    image:  '/assets/projects/Aetherprotocol/1.png?w=600&h=400&fit=crop',
     overview: {
       pt: 'Este projeto envolveu a criação de uma splash art épica para um personagem guerreiro em um card game fantasy. O objetivo era capturar a essência heroica e poderosa do personagem, transmitindo sua força e determinação através de uma composição dinâmica e cores vibrantes.',
       en: 'This project involved creating an epic splash art for a warrior character in a fantasy card game. The goal was to capture the heroic and powerful essence of the character, conveying their strength and determination through dynamic composition and vibrant colors.'
@@ -285,9 +285,9 @@ export const projects: Project[] = [
       en: 'We developed a dramatic lighting approach focusing on the character\'s face and weapon, using strong contrasts and a limited but impactful color palette. The composition was structured to guide the player\'s eye.'
     },
     gallery: [
-      'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop',
-      '../../assets/logo.png',
-      'https://images.unsplash.com/photo-1566404791232-af9fe0ae8e4b?w=800&h=600&fit=crop'
+      '/assets/projects/Aetherprotocol/1.png',
+      '/assets/projects/Aetherprotocol/2.png',
+      '/assets/projects/Aetherprotocol/3.png',
     ],
     process: {
       pt: [
@@ -323,7 +323,7 @@ export const projects: Project[] = [
       pt: '',
       en: 'Created a full set of illustrations and assets for Fae Village, a lighthearted, family-friendly resource management board game, featuring a colorful and whimsical visual style.'
     },
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop',
+    image:  '/assets/projects/FaeVillage/BoxCover.jpg?w=600&h=400&fit=crop',
     overview: {
       pt: 'Este projeto envolveu a criação de uma splash art épica para um personagem guerreiro em um card game fantasy. O objetivo era capturar a essência heroica e poderosa do personagem, transmitindo sua força e determinação através de uma composição dinâmica e cores vibrantes.',
       en: 'This project involved creating an epic splash art for a warrior character in a fantasy card game. The goal was to capture the heroic and powerful essence of the character, conveying their strength and determination through dynamic composition and vibrant colors.'
@@ -337,11 +337,14 @@ export const projects: Project[] = [
       en: 'We developed a dramatic lighting approach focusing on the character\'s face and weapon, using strong contrasts and a limited but impactful color palette. The composition was structured to guide the player\'s eye.'
     },
     gallery: [
-      'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop',
-      '../../assets/logo.png',
-      'https://www.youtube.com/watch?v=EapdZAiEfPY&list=PLqdfFpDax4_4PtMZuCi5Y0vP6wg2tjlTa&index=2',
-
-      'https://images.unsplash.com/photo-1566404791232-af9fe0ae8e4b?w=800&h=600&fit=crop'
+      '/assets/projects/FaeVillage/BoxCover.jpg',
+      '/assets/projects/FaeVillage/press1.png',
+      '/assets/projects/FaeVillage/press2.png',
+      '/assets/projects/FaeVillage/mockup.png',
+      '/assets/projects/FaeVillage/buildings 1.png',
+      '/assets/projects/FaeVillage/buildings 2.png',
+      '/assets/projects/FaeVillage/buildings 3.png',
+      '/assets/projects/FaeVillage/buildings 4.png',
     ],
     process: {
       pt: [
@@ -365,8 +368,8 @@ export const projects: Project[] = [
 ];
 
 export async function getProjectById(id: string): Promise<Project | null> {
-  const project = projects.find(p => p.id === id)
-  return project ?? null
+  const project = projects.find(p => p.id === id);
+  return project ?? null;
 }
 
 export function getRelatedProjects(currentId: string, tags: [string], limit: number = 3): Project[] {
