@@ -372,9 +372,14 @@ export async function getProjectById(id: string): Promise<Project | null> {
   return project ?? null;
 }
 
-export function getRelatedProjects(currentId: string, tags: [string], limit: number = 3): Project[] {
+export function getRelatedProjects(
+  currentId: string,
+  tags: string[],
+  limit: number = 3
+): Project[] {
+  const currentTags = new Set(tags);
   return projects
-    .filter(project => project.id !== currentId && project.tags === tags)
+    .filter(p => p.id !== currentId && p.tags.some(t => currentTags.has(t)))
     .slice(0, limit);
 }
 
@@ -388,4 +393,7 @@ export function getPreviousProject(currentId: string): Project | undefined {
   const currentIndex = projects.findIndex(project => project.id === currentId);
   if (currentIndex === -1) return undefined;
   return projects[(currentIndex - 1 + projects.length) % projects.length];
+}
+export async function getAllProjectsIds(): Promise<string[]> {
+  return projects.map(p => p.id);
 }

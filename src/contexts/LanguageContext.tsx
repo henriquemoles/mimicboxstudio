@@ -91,8 +91,7 @@ const translations = {
     'footer.rights': 'Todos os direitos reservados.',
     'footer.portfolio': 'Portfolio',
     'footer.about': 'Sobre',
-    'footer.contact': 'Contato',
-    
+    'footer.contact': 'Contato',    
     // Form Messages
     'form.success': 'Mensagem enviada com sucesso!',
     'form.error': 'Erro ao enviar mensagem. Tente novamente.',
@@ -181,6 +180,10 @@ const translations = {
     'footer.portfolio': 'Portfolio',
     'footer.about': 'About',
     'footer.contact': 'Contact',
+    'footer.Service': 'Services',
+    'footer.Service1': 'Game Art',
+    'footer.Service2': 'Illustration',
+    'footer.Service3': 'Environment',
     
     // Form Messages
     'form.success': 'Message sent successfully!',

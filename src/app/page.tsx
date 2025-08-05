@@ -68,7 +68,7 @@ export default function App() {
   };
 
   const handleProjectSelect = (projectId: string) => {
-    router.push(`/${projectId}`);
+    router.push(`/project?projectId=${projectId}`);
   };
 
   return (

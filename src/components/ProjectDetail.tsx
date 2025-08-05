@@ -81,13 +81,13 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
   const handlePrevProject = () => {
     setCurrentImageIndex(0)
     setLightboxOpen(false)
-    router.push(`/${prevProject.id}`)
+    router.push(`/project?projectId=${prevProject.id}`)
   }
 
   const handleNextProject = () => {
     setCurrentImageIndex(0)
     setLightboxOpen(false)
-    router.push(`/${nextProject.id}`)
+    router.push(`/project?projectId=${nextProject.id}`)
   }
 
   return (
