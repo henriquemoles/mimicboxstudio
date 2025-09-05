@@ -1,8 +1,8 @@
 import { Users } from 'lucide-react';
 import { Card, CardContent } from '../ui/card';
 import { useLanguage } from '../../contexts/LanguageContext';
-import pedroImage from '../../assets/team/pedro.png';
-import hygorImage from '../../assets/team/hygor.jpg';
+import pedroImage from '../../assets/team/pedro.avif';
+import hygorImage from '../../assets/team/hygor.avif';
 import trinorLogo from '../../assets/clients/cliente trinorentertainment.png';
 import sid8Logo from '../../assets/clients/cliente SID-8.png';
 import boostedRealityLogo from '../../assets/clients/cliente Booosted REALITY.png';
@@ -123,7 +123,7 @@ export function AboutSection() {
               <p className="font-inter text-muted-foreground">{t('about.stats.clients')}</p>
             </div>
             <div className="text-center">
-              <div className="font-anton text-3xl sm:text-4xl text-mimicbox-yellow mb-2">3+</div>
+              <div className="font-anton text-3xl sm:text-4xl text-mimicbox-yellow mb-2">4+</div>
               <p className="font-inter text-muted-foreground">{t('about.stats.experience')}</p>
             </div>
           </div>

@@ -4,8 +4,6 @@ import { Button } from '../ui/button';
 import { Card, CardContent } from '../ui/card';
 import { useLanguage } from '../../contexts/LanguageContext';
 
-
-
 export function ContactSection() {
   const { t } = useLanguage();
 
@@ -26,7 +24,7 @@ export function ContactSection() {
       description: t('contact.instagram.description'),
       icon: Instagram,
       action: t('contact.instagram.action'),
-      link: 'https://instagram.com/mimicboxstudio',
+      link: 'https://www.instagram.com/pmessias.art',
       color: 'bg-gradient-to-r from-purple-600 to-pink-600',
       hoverColor: 'hover:from-purple-700 hover:to-pink-700'
     },
@@ -98,20 +96,45 @@ export function ContactSection() {
                   </p>
 
                   {/* Action Button */}
-                  <Button
-                    asChild
-                    className="bg-transparent border-2 border-mimicbox-yellow text-mimicbox-yellow hover:bg-mimicbox-yellow hover:text-mimicbox-black font-anton uppercase tracking-wider transition-all duration-300 group-hover:scale-105"
-                  >
-                    <a 
-                      href={method.link}
-                      target={method.id === 'email' ? '_self' : '_blank'}
-                      rel={method.id === 'email' ? undefined : 'noopener noreferrer'}
-                      className="flex items-center space-x-2"
-                    >
-                      <span>{method.action}</span>
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  </Button>
+            {method.id === 'instagram' ? (
+<Button
+  className="bg-transparent focus:outline-none focus:ring-0 hover:bg-transparent"
+>
+  <div className="bg-transparent border-2 border-mimicbox-yellow text-mimicbox-yellow font-anton uppercase tracking-wider transition-all duration-300 group-hover:scale-105 rounded-lg overflow-hidden ">
+    <a
+      href="https://www.instagram.com/pmessias.art"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block px-4 py-2 hover:bg-mimicbox-yellow hover:text-mimicbox-black"
+    >
+      pmessias.art
+    </a>
+    <a
+      href="https://www.instagram.com/hygordsart"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block px-4 py-2 hover:bg-mimicbox-yellow hover:text-mimicbox-black"
+    >
+      hygordsart
+    </a>
+  </div>
+</Button>
+) : (
+  <Button
+    asChild
+    className="bg-transparent border-2 border-mimicbox-yellow text-mimicbox-yellow hover:bg-mimicbox-yellow hover:text-mimicbox-black font-anton uppercase tracking-wider transition-all duration-300 group-hover:scale-105"
+  >
+    <a
+      href={method.link}
+      target={method.id === 'email' ? '_self' : '_blank'}
+      rel={method.id === 'email' ? undefined : 'noopener noreferrer'}
+      className="flex items-center space-x-2"
+    >
+      <span>{method.action}</span>
+      <ExternalLink className="w-4 h-4" />
+    </a>
+  </Button>
+)}
                 </CardContent>
               </Card>
             );
@@ -154,17 +177,28 @@ export function ContactSection() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="border-mimicbox-yellow text-mimicbox-yellow hover:bg-mimicbox-yellow hover:text-mimicbox-black font-anton text-lg uppercase tracking-wider transition-all duration-300 hover:scale-105"
+                  className="border-mimicbox-yellow text-mimicbox-yellow hover:bg-mimicbox-yellow hover:text-mimicbox-yellow font-anton text-lg uppercase tracking-wider transition-all duration-300 hover:scale-105"
                 >
-                  <a 
-                    href="https://instagram.com/mimicboxstudio" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2"
-                  >
-                    <Instagram className="w-5 h-5" />
-                    <span>{t('contact.cta.instagram')}</span>
-                  </a>
+<div className="flex gap-4">
+  <a
+    href="https://www.instagram.com/pmessias.art"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center space-x-2"
+  >
+    <Instagram className="w-5 h-5" />
+    <span>pmessias.art</span>
+  </a>
+  <a
+    href="https://www.instagram.com/hygordsart"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center space-x-2"
+  >
+    <Instagram className="w-5 h-5" />
+    <span>hygordsart</span>
+  </a>
+</div>
                 </Button>
               </div>
             </CardContent>

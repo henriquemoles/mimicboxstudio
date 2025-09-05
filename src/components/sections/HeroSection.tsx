@@ -2,20 +2,22 @@
 import { useState, useEffect } from 'react';
 import { ArrowDown } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
-import heroImage1 from '../../assets/hero-1.jpg';
-import heroImage2 from '../../assets/hero-2.png';
-import heroImage3 from '../../assets/hero-3.jpg';
 
 interface HeroSectionProps {
   onScrollToPortfolio: () => void;
 }
 
 export function HeroSection({ onScrollToPortfolio }: HeroSectionProps) {
+
   const { language } = useLanguage();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Array de imagens para o carrossel
-  const heroImages = [heroImage1, heroImage2, heroImage3];
+const heroImages = [
+  "/assets/projects/nidalee/nida3.avif",
+  "/assets/projects/hero-1.avif",
+  "/assets/projects/hero-2.avif",
+];
 
   // Carrossel automático - troca a cada 3 segundos
   useEffect(() => {
@@ -74,7 +76,7 @@ export function HeroSection({ onScrollToPortfolio }: HeroSectionProps) {
             }`}
           >
             <img
-              src={image.src}
+              src={image}
               alt={`Hero background ${index + 1}`}
               className="w-full h-full object-cover"
             />

@@ -12,6 +12,33 @@ import { useLanguage } from '../contexts/LanguageContext'
 import { projects } from '../data/projects'
 import type { Project } from '../data/projects'
 
+/* ============================ */
+/* Preload / Prefetch de imagens */
+/* ============================ */
+
+function preloadImage(href: string) {
+  if (!href) return
+  const id = `preload-${href}`
+  if (typeof document === 'undefined') return
+  if (document.getElementById(id)) return
+  const link = document.createElement('link')
+  link.id = id
+  link.rel = 'preload'
+  link.as = 'image'
+  link.href = href
+  document.head.appendChild(link)
+}
+
+function usePreloadNextGalleryImages(gallery: string[], index: number, count = 2) {
+  useEffect(() => {
+    if (!gallery?.length) return
+    for (let i = 1; i <= count; i++) {
+      const next = gallery[(index + i) % gallery.length]
+      if (next) preloadImage(next)
+    }
+  }, [gallery, index, count])
+}
+
 interface ProjectDetailProps {
   project: Project
 }
@@ -23,16 +50,27 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxImageIndex, setLightboxImageIndex] = useState(0)
 
+  // Índices de projeto anterior/próximo
+  const currentProjectIndex = projects.findIndex(p => p.id === project.id)
+  const nextProject = projects[(currentProjectIndex + 1) % projects.length]
+  const prevProject = projects[(currentProjectIndex - 1 + projects.length) % projects.length]
+
+  /* ============================ */
+  /* UX / Navegação / Acessibilidade */
+  /* ============================ */
+
+  // ESC volta para a home (fecha modal)
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && !lightboxOpen) {
-        router.push('/') // Fecha o modal, vai para lista de portfólio
+        router.push('/') // ajuste se quiser router.back()
       }
     }
     document.addEventListener('keydown', handleEscape)
     return () => document.removeEventListener('keydown', handleEscape)
   }, [lightboxOpen, router])
 
+  // Evita scroll de fundo quando o modal de projeto está aberto
   useEffect(() => {
     if (!lightboxOpen) {
       document.body.style.overflow = 'hidden'
@@ -44,14 +82,37 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
     }
   }, [lightboxOpen])
 
+  // Ao trocar de projeto, reseta estado de imagem/lightbox
   useEffect(() => {
     setCurrentImageIndex(0)
     setLightboxOpen(false)
   }, [project.id])
 
-  const currentProjectIndex = projects.findIndex(p => p.id === project.id)
-  const nextProject = projects[(currentProjectIndex + 1) % projects.length]
-  const prevProject = projects[(currentProjectIndex - 1 + projects.length) % projects.length]
+  /* ============================ */
+  /* Preload inteligente de imagens */
+  /* ============================ */
+
+  // Preload das próximas imagens da galeria (suaviza o "next" da imagem principal)
+  usePreloadNextGalleryImages(project.gallery, currentImageIndex, 2)
+
+  // Preload do próximo slide imediato também (reforço)
+  useEffect(() => {
+    if (!project.gallery?.length) return
+    const nextIdx = (currentImageIndex + 1) % project.gallery.length
+    const nextSrc = project.gallery[nextIdx]
+    if (nextSrc) preloadImage(nextSrc)
+  }, [currentImageIndex, project.gallery])
+
+  // Prefetch das capas do projeto anterior e próximo (para navegação entre projetos)
+  useEffect(() => {
+    if (nextProject?.gallery?.[0]) preloadImage(nextProject.gallery[0])
+    if (prevProject?.gallery?.[0]) preloadImage(prevProject.gallery[0])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [project.id])
+
+  /* ============================ */
+  /* Handlers */
+  /* ============================ */
 
   const handlePrevImage = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -106,7 +167,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 {t('project.back')}
               </Button>
-              <div className="h-6 w-px bg-border"></div>
+              <div className="h-6 w-px bg-border" />
               <div>
                 <h1 className="font-anton text-xl text-foreground uppercase tracking-wide">{project.title}</h1>
                 <div className="flex items-center space-x-4 mt-1">
@@ -138,25 +199,22 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                     className="cursor-pointer hover:opacity-90 transition-opacity duration-300"
                     onClick={handleImageClick}
                   >
+                    {/* Imagem principal com prioridade/otimizações */}
                     <ImageWithFallback
                       src={project.gallery[currentImageIndex]}
                       alt={`${project.title} - Image ${currentImageIndex + 1}`}
                       className="w-full h-96 lg:h-[500px] object-cover rounded-lg"
+                      /* Dicas para o navegador */
+                      loading="lazy"               // carrega de imediato a que está visível
+                      decoding="async"              // não trava o main thread
+                      fetchPriority='high'     // prioridade de rede
+                      sizes="(min-width: 1024px) 800px, 100vw"
                     />
                     <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
                       <div className="bg-black/50 backdrop-blur-sm rounded-full p-3 border border-white/20">
-                        <svg
-                          className="w-6 h-6 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                          />
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                         </svg>
                       </div>
                     </div>
@@ -190,9 +248,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                               handleThumbnailClick(index)
                             }}
                             className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                              index === currentImageIndex
-                                ? 'bg-mimicbox-yellow'
-                                : 'bg-white/50 hover:bg-white/80'
+                              index === currentImageIndex ? 'bg-mimicbox-yellow' : 'bg-white/50 hover:bg-white/80'
                             }`}
                           />
                         ))}
@@ -210,11 +266,17 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                         className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 hover:scale-105 ${
                           index === currentImageIndex ? 'border-mimicbox-yellow' : 'border-transparent hover:border-border'
                         }`}
+                        // Preload leve ao focar/hover (útil em desktop)
+                        onMouseEnter={() => preloadImage(image)}
+                        onFocus={() => preloadImage(image)}
                       >
                         <ImageWithFallback
                           src={image}
                           alt={`${project.title} thumbnail ${index + 1}`}
                           className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                          sizes="100px"
                         />
                       </button>
                     ))}
@@ -239,6 +301,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                 </Card>
               </div>
 
+              {/* Coluna lateral */}
               <div className="space-y-6">
                 <Card className="bg-background border-border">
                   <CardContent className="p-6">
@@ -286,7 +349,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                   </CardContent>
                 </Card>
 
-                {project.technologies && project.technologies.length > 0 && (
+                {project.technologies?.length > 0 && (
                   <Card className="bg-background border-border">
                     <CardContent className="p-6">
                       <h3 className="font-anton text-lg text-foreground mb-4 uppercase tracking-wide">
@@ -307,7 +370,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                   </Card>
                 )}
 
-                {project.team && project.team.length > 0 && (
+                {project.team?.length > 0 && (
                   <Card className="bg-background border-border">
                     <CardContent className="p-6">
                       <h3 className="font-anton text-lg text-foreground mb-4 uppercase tracking-wide">

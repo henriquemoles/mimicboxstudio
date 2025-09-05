@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { Button } from './ui/button';
 import { useLanguage } from '../contexts/LanguageContext';
-import logoImage from '../assets/logo.png';
+import logoImage from '../assets/logo.webp';
 
 
 interface HeaderProps {
@@ -50,7 +50,7 @@ export function Header({ activeSection, onSectionChange }: HeaderProps) {
               className="cursor-pointer" 
               onClick={() => handleNavClick('home')}
             >
-                <img 
+                <img
                   src={logoImage.src} 
                 alt="Mimicbox Studio" 
                 className="h-16 w-auto"

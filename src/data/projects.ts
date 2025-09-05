@@ -50,7 +50,7 @@ export const projects: Project[] = [
       pt: 'Este projeto representou um marco importante em nossa jornada como estúdio, sendo nossa primeira grande colaboração com a Dire Wolf Digital. O guerreiro criado não era apenas uma ilustração, mas a alma visual de um personagem que os jogadores encontrariam repetidamente ao longo de sua jornada no jogo.\n\nO processo criativo envolveu múltiplas iterações onde exploramos desde armaduras clássicas medievais até elementos mais fantásticos. A versão final conseguiu equilibrar perfeitamente a necessidade de impacto visual para marketing com a funcionalidade dentro do jogo, resultando em uma das nossas peças mais reconhecidas até hoje.',
       en: 'Illustration focused on developing development and better learning the aesthetics of Legends of Runeterra.'
     },
-    image:   '/assets/projects/nidalee/nida1.jpg?w=600&h=400&fit=crop&auto=format',
+    image:   '/assets/projects/nidalee/nida3.avif?w=600&h=400&fit=crop&auto=format',
     overview: {
       pt: 'Este projeto envolveu a criação de uma splash art épica para um personagem guerreiro em um card game fantasy. O objetivo era capturar a essência heroica e poderosa do personagem, transmitindo sua força e determinação através de uma composição dinâmica e cores vibrantes.',
       en: 'This project involved creating an epic splash art for a warrior character in a fantasy card game. The goal was to capture the heroic and powerful essence of the character, conveying their strength and determination through dynamic composition and vibrant colors.'
@@ -64,9 +64,9 @@ export const projects: Project[] = [
       en: 'We developed a dramatic lighting approach focusing on the character\'s face and weapon, using strong contrasts and a limited but impactful color palette. The composition was structured to guide the player\'s eye.'
     },
     gallery: [
-  '/assets/projects/nidalee/nida1.jpg?w=500&h=500&fit=crop',
-  '/assets/projects/nidalee/nida2.jpg?w=500&h=500&fit=clip',
-  '/assets/projects/nidalee/nida3.jpg?w=500&h=500&fit=clip',
+  '/assets/projects/nidalee/nida1.avif?w=500&h=500&fit=crop',
+  '/assets/projects/nidalee/nida2.avif?w=500&h=500&fit=clip',
+  '/assets/projects/nidalee/nida3.avif?w=500&h=500&fit=clip',
     ],
     process: {
       pt: [
@@ -102,7 +102,7 @@ export const projects: Project[] = [
       pt:'',
       en: 'This project explores the creation of a fictional universe inspired by the story of Alice in Wonderland, but with an Asian theme. The characters are reimagined and inserted into a 3D environment created with Blender and finalized with Photoshop.'
     },
-    image:   '/assets/projects/AliceSamurai/alice1.png?w=600&h=400&fit=crop',
+    image:   '/assets/projects/AliceSamurai/alice4.avif?w=600&h=400&fit=crop',
     overview: {
       pt: 'Este projeto envolveu a criação de uma splash art épica para um personagem guerreiro em um card game fantasy. O objetivo era capturar a essência heroica e poderosa do personagem, transmitindo sua força e determinação através de uma composição dinâmica e cores vibrantes.',
       en: 'This project involved creating an epic splash art for a warrior character in a fantasy card game. The goal was to capture the heroic and powerful essence of the character, conveying their strength and determination through dynamic composition and vibrant colors.'
@@ -116,15 +116,15 @@ export const projects: Project[] = [
       en: 'We developed a dramatic lighting approach focusing on the character\'s face and weapon, using strong contrasts and a limited but impactful color palette. The composition was structured to guide the player\'s eye.'
     },
     gallery: [
-  '/assets/projects/AliceSamurai/alice1.png',
-    '/assets/projects/AliceSamurai/alice2.png',
-      '/assets/projects/AliceSamurai/alice3.png',
-        '/assets/projects/AliceSamurai/alice4.jpg',
-          '/assets/projects/AliceSamurai/alice5.png',
-            '/assets/projects/AliceSamurai/alice6.jpg',
-              '/assets/projects/AliceSamurai/alice7.png',
-                '/assets/projects/AliceSamurai/alice8.png',
-                  '/assets/projects/AliceSamurai/alice9.png',
+  '/assets/projects/AliceSamurai/alice1.avif',
+    '/assets/projects/AliceSamurai/alice2.avif',
+      '/assets/projects/AliceSamurai/alice3.avif',
+        '/assets/projects/AliceSamurai/alice4.avif',
+          '/assets/projects/AliceSamurai/alice5.avif',
+            '/assets/projects/AliceSamurai/alice6.avif',
+              '/assets/projects/AliceSamurai/alice7.avif',
+                '/assets/projects/AliceSamurai/alice8.avif',
+                  '/assets/projects/AliceSamurai/alice9.avif',
     ],
     process: {
       pt: [
@@ -160,7 +160,7 @@ export const projects: Project[] = [
       pt:'',
       en: 'In a futuristic world, there is a society based on mining through the use of mechs. SW, abandoned and raised by 7 dwarves in a mecha workshop, grows up to become a pilot. Inspired by Snow White, this project merges fairy tale with sci-fi.'
     },
-    image: '/assets/projects/SWMecha/sw1.png?w=600&h=400&fit=crop',
+    image: '/assets/projects/SWMecha/sw1.avif?w=600&h=400&fit=crop',
     overview: {
       pt: 'Este projeto envolveu a criação de uma splash art épica para um personagem guerreiro em um card game fantasy. O objetivo era capturar a essência heroica e poderosa do personagem, transmitindo sua força e determinação através de uma composição dinâmica e cores vibrantes.',
       en: 'This project involved creating an epic splash art for a warrior character in a fantasy card game. The goal was to capture the heroic and powerful essence of the character, conveying their strength and determination through dynamic composition and vibrant colors.'
@@ -174,14 +174,14 @@ export const projects: Project[] = [
       en: 'We developed a dramatic lighting approach focusing on the character\'s face and weapon, using strong contrasts and a limited but impactful color palette. The composition was structured to guide the player\'s eye.'
     },
     gallery: [
-      '/assets/projects/SWMecha/sw1.png',
-      '/assets/projects/SWMecha/sw2.png',
-      '/assets/projects/SWMecha/sw3.png',
-      '/assets/projects/SWMecha/sw4.png',
-      '/assets/projects/SWMecha/sw5.png',
-      '/assets/projects/SWMecha/sw6.png',
-      '/assets/projects/SWMecha/sw7.png',
-      '/assets/projects/SWMecha/sw8.png',
+      '/assets/projects/SWMecha/sw1.avif',
+      '/assets/projects/SWMecha/sw2.avif',
+      '/assets/projects/SWMecha/sw3.avif',
+      '/assets/projects/SWMecha/sw4.avif',
+      '/assets/projects/SWMecha/sw5.avif',
+      '/assets/projects/SWMecha/sw6.avif',
+      '/assets/projects/SWMecha/sw7.avif',
+      '/assets/projects/SWMecha/sw8.avif',
     ],
     process: {
       pt: [
@@ -217,7 +217,7 @@ export const projects: Project[] = [
       pt: '',
       en: 'Developed character concept art for a Christmas commercial by the Portuguese supermarket Continente. The project included designing an outfit inspired by singer Ana Castela, for the mascot Popota. Here is the video of the commercial: https://www.youtube.com/watch?v=EapdZAiEfPY&list=PLqdfFpDax4_4PtMZuCi5Y0vP6wg2tjlTa&index=2'
     },
-    image: '/assets/projects/Popota/Nebula 1.png',
+    image: '/assets/projects/Popota/Nebula 1.avif',
     overview: {
       pt: 'Este projeto envolveu a criação de uma splash art épica para um personagem guerreiro em um card game fantasy. O objetivo era capturar a essência heroica e poderosa do personagem, transmitindo sua força e determinação através de uma composição dinâmica e cores vibrantes.',
       en: 'This project involved creating an epic splash art for a warrior character in a fantasy card game. The goal was to capture the heroic and powerful essence of the character, conveying their strength and determination through dynamic composition and vibrant colors.'
@@ -231,10 +231,10 @@ export const projects: Project[] = [
       en: 'We developed a dramatic lighting approach focusing on the character\'s face and weapon, using strong contrasts and a limited but impactful color palette. The composition was structured to guide the player\'s eye.'
     },
     gallery: [
-      '/assets/projects/Popota/Nebula 1.png',
-      '/assets/projects/Popota/Nebula 2.png',
-      '/assets/projects/Popota/Nebula 3.png',
-      '/assets/projects/Popota/Nebula 4.png',
+      '/assets/projects/Popota/Nebula 1.avif',
+      '/assets/projects/Popota/Nebula 2.avif',
+      '/assets/projects/Popota/Nebula 3.avif',
+      '/assets/projects/Popota/Nebula 4.avif',
     ],
     process: {
       pt: [
@@ -271,7 +271,7 @@ export const projects: Project[] = [
       pt: '',
       en: 'Developed character concept art for a Christmas commercial by the Portuguese supermarket Continente. The project included designing an outfit inspired by singer Ana Castela, for the mascot Popota.'
     },
-    image:  '/assets/projects/Aetherprotocol/1.png?w=600&h=400&fit=crop',
+    image:  '/assets/projects/Aetherprotocol/1.avif?w=600&h=400&fit=crop',
     overview: {
       pt: 'Este projeto envolveu a criação de uma splash art épica para um personagem guerreiro em um card game fantasy. O objetivo era capturar a essência heroica e poderosa do personagem, transmitindo sua força e determinação através de uma composição dinâmica e cores vibrantes.',
       en: 'This project involved creating an epic splash art for a warrior character in a fantasy card game. The goal was to capture the heroic and powerful essence of the character, conveying their strength and determination through dynamic composition and vibrant colors.'
@@ -285,9 +285,9 @@ export const projects: Project[] = [
       en: 'We developed a dramatic lighting approach focusing on the character\'s face and weapon, using strong contrasts and a limited but impactful color palette. The composition was structured to guide the player\'s eye.'
     },
     gallery: [
-      '/assets/projects/Aetherprotocol/1.png',
-      '/assets/projects/Aetherprotocol/2.png',
-      '/assets/projects/Aetherprotocol/3.png',
+      '/assets/projects/Aetherprotocol/1.avif',
+      '/assets/projects/Aetherprotocol/2.avif',
+      '/assets/projects/Aetherprotocol/3.avif',
     ],
     process: {
       pt: [
@@ -323,7 +323,7 @@ export const projects: Project[] = [
       pt: '',
       en: 'Created a full set of illustrations and assets for Fae Village, a lighthearted, family-friendly resource management board game, featuring a colorful and whimsical visual style.'
     },
-    image:  '/assets/projects/FaeVillage/BoxCover.jpg?w=600&h=400&fit=crop',
+    image:  '/assets/projects/FaeVillage/BoxCover.avif?w=600&h=400&fit=crop',
     overview: {
       pt: 'Este projeto envolveu a criação de uma splash art épica para um personagem guerreiro em um card game fantasy. O objetivo era capturar a essência heroica e poderosa do personagem, transmitindo sua força e determinação através de uma composição dinâmica e cores vibrantes.',
       en: 'This project involved creating an epic splash art for a warrior character in a fantasy card game. The goal was to capture the heroic and powerful essence of the character, conveying their strength and determination through dynamic composition and vibrant colors.'
@@ -337,14 +337,14 @@ export const projects: Project[] = [
       en: 'We developed a dramatic lighting approach focusing on the character\'s face and weapon, using strong contrasts and a limited but impactful color palette. The composition was structured to guide the player\'s eye.'
     },
     gallery: [
-      '/assets/projects/FaeVillage/BoxCover.jpg',
-      '/assets/projects/FaeVillage/press1.png',
-      '/assets/projects/FaeVillage/press2.png',
-      '/assets/projects/FaeVillage/mockup.png',
-      '/assets/projects/FaeVillage/buildings 1.png',
-      '/assets/projects/FaeVillage/buildings 2.png',
-      '/assets/projects/FaeVillage/buildings 3.png',
-      '/assets/projects/FaeVillage/buildings 4.png',
+      '/assets/projects/FaeVillage/BoxCover.avif',
+      '/assets/projects/FaeVillage/press1.avif',
+      '/assets/projects/FaeVillage/press2.avif',
+      '/assets/projects/FaeVillage/mockup.avif',
+      '/assets/projects/FaeVillage/buildings 1.avif',
+      '/assets/projects/FaeVillage/buildings 2.avif',
+      '/assets/projects/FaeVillage/buildings 3.avif',
+      '/assets/projects/FaeVillage/buildings 4.avif',
     ],
     process: {
       pt: [

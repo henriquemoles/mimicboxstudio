@@ -1,7 +1,8 @@
-'use client'
+'use client';
 
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
+import Head from 'next/head';
 
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/sections/HeroSection";
@@ -11,21 +12,22 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { projects } from '@/data/projects';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
   const router = useRouter();
+const preloadImages = [
+  "/assets/projects/nidalee/nida3.avif",
+  "/assets/projects/hero-1.avif",
+  "/assets/projects/hero-2.avif",
+  ...projects.slice(0, 6).map(p => p.image),
+];
 
-  // Update active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const sections = [
-        "home",
-        "portfolio",
-        "about",
-        "contact",
-      ];
-      const scrollPosition = window.scrollY + 100; // Offset for header
+      const sections = ["home", "portfolio", "about", "contact"];
+      const scrollPosition = window.scrollY + 100;
 
       for (const sectionId of sections.reverse()) {
         const element = document.getElementById(sectionId);
@@ -35,7 +37,6 @@ export default function App() {
         }
       }
 
-      // Special case for home section
       if (window.scrollY < 100) {
         setActiveSection("home");
       }
@@ -53,7 +54,7 @@ export default function App() {
     } else {
       const element = document.getElementById(sectionId);
       if (element) {
-        const headerHeight = 64; // Header height
+        const headerHeight = 64;
         const elementPosition = element.offsetTop - headerHeight;
         window.scrollTo({
           top: elementPosition,
@@ -73,34 +74,38 @@ export default function App() {
 
   return (
     <LanguageProvider>
+      <Head>
+        {preloadImages.map((src, index) => (
+          <link
+            key={index}
+            rel="preload"
+            as="image"
+            href={src}
+            fetchPriority="high"
+          />
+        ))}
+      </Head>
+
       <div className="min-h-screen bg-background dark">
-        {/* Header */}
         <Header
           activeSection={activeSection}
           onSectionChange={handleScrollToSection}
         />
 
-        {/* Main Content */}
         <main>
-          {/* Hero Section */}
           <div id="home">
             <HeroSection onScrollToPortfolio={handleScrollToPortfolio} />
           </div>
 
-          {/* Portfolio Section */}
           <PortfolioSection onProjectSelect={handleProjectSelect} />
 
-          {/* About Section */}
           <AboutSection />
 
-          {/* Contact Section */}
           <ContactSection />
         </main>
 
-        {/* Footer */}
         <Footer />
 
-        {/* Toast Notifications */}
         <Toaster
           position="top-right"
           toastOptions={{

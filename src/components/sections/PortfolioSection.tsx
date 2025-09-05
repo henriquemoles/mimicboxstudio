@@ -18,13 +18,13 @@ export function PortfolioSection({ onProjectSelect }: PortfolioSectionProps) {
   const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
 
-  const filters: { id: FilterType; label: string }[] = [
-    { id: 'all', label: t('portfolio.filter.all') },
-    { id: 'gameArt', label: t('portfolio.filter.gameArt') },
-    { id: 'illustration', label: t('portfolio.filter.illustration') },
-    { id: 'environment', label: t('portfolio.filter.environment') },
-    { id: 'concept', label: t('portfolio.filter.concept') }
-  ];
+const filters = [
+  { id: 'all', label: t('portfolio.filter.all') },
+  { id: 'gameArt', label: t('portfolio.filter.gameArt') },
+  { id: 'illustration', label: t('portfolio.filter.illustration') },
+  { id: 'environment', label: t('portfolio.filter.environment') },
+  { id: 'concept', label: t('portfolio.filter.concept') },
+] as const;
 
 const filteredProjects =
   activeFilter === 'all'

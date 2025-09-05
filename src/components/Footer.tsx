@@ -1,6 +1,8 @@
 import { Heart, Code } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import logoImage from '../assets/logo.png';
+import logoImage from '../assets/logo.webp';
+import Image from 'next/image'
+
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -19,7 +21,6 @@ export function Footer() {
     t('footer.service3'),
     t('footer.service4'),
     t('footer.service5'),
-    t('footer.service6')
   ];
 
   return (
@@ -30,7 +31,7 @@ export function Footer() {
           {/* Logo and Description */}
           <div className="lg:col-span-2">
             <div className="mb-6">
-              <img 
+              <img
                   src={logoImage.src} 
                 alt="Mimicbox Studio" 
                 className="h-10 w-auto mb-4"
