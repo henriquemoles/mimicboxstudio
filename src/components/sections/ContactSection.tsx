@@ -7,6 +7,9 @@ import { useLanguage } from '../../contexts/LanguageContext';
 export function ContactSection() {
   const { t } = useLanguage();
 
+  // email codificado em Base64 (não aparece no HTML)
+  const encodedEmail = "bWltaWNib3hzdHVkaW9AZ21haWwuY29t"; // mimicboxstudio@gmail.com
+
   const contactMethods = [
     {
       id: 'email',
@@ -14,7 +17,6 @@ export function ContactSection() {
       description: t('contact.email.description'),
       icon: Mail,
       action: t('contact.email.action'),
-      link: 'mailto:mimicboxstudio@gmail.com',
       color: 'bg-blue-600',
       hoverColor: 'hover:bg-blue-700'
     },
@@ -40,13 +42,33 @@ export function ContactSection() {
     }
   ];
 
+  // função auxiliar para abrir mailto de forma blindada (só roda no clique)
+  const openMailTo = () => {
+    try {
+      const email = atob(encodedEmail);
+      // opcional: usar window.open também funciona em alguns ambientes
+      window.location.href = `mailto:${email}`;
+    } catch (err) {
+      // falha silenciosa — você pode logar para debug em dev
+      // console.error('Erro ao decodificar email', err);
+    }
+  };
+
+  // handler acessível para teclas (enter/space)
+  const handleKeyActivate = (e: React.KeyboardEvent, fn: () => void) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      fn();
+    }
+  };
+
   return (
     <section id="contact" className="py-20 bg-mimicbox-gray-light relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-32 h-32 bg-mimicbox-yellow/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-48 h-48 bg-mimicbox-yellow/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-mimicbox-yellow/5 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-20 right-20 w-48 h-48 bg-mimicbox-yellow/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-mimicbox-yellow/5 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -58,7 +80,7 @@ export function ContactSection() {
           <p className="font-inter text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
             {t('contact.subtitle')}
           </p>
-          
+
           {/* Creative Visual Element */}
           <div className="flex items-center justify-center space-x-4 mb-8">
             <div className="w-12 h-0.5 bg-gradient-to-r from-transparent to-mimicbox-yellow"></div>
@@ -71,9 +93,9 @@ export function ContactSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {contactMethods.map((method) => {
             const IconComponent = method.icon;
-            
+
             return (
-              <Card 
+              <Card
                 key={method.id}
                 className="bg-card border-border hover-lift group cursor-pointer transition-all duration-500 hover:border-mimicbox-yellow/50"
               >
@@ -83,7 +105,6 @@ export function ContactSection() {
                     <div className={`w-20 h-20 mx-auto rounded-2xl ${method.color} ${method.hoverColor} flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg`}>
                       <IconComponent className="w-10 h-10 text-white" />
                     </div>
-                    {/* Glow effect */}
                     <div className="absolute inset-0 w-20 h-20 mx-auto rounded-2xl bg-mimicbox-yellow/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
 
@@ -96,45 +117,57 @@ export function ContactSection() {
                   </p>
 
                   {/* Action Button */}
-            {method.id === 'instagram' ? (
-<Button
-  className="bg-transparent focus:outline-none focus:ring-0 hover:bg-transparent"
->
-  <div className="bg-transparent border-2 border-mimicbox-yellow text-mimicbox-yellow font-anton uppercase tracking-wider transition-all duration-300 group-hover:scale-105 rounded-lg overflow-hidden ">
-    <a
-      href="https://www.instagram.com/pmessias.art"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block px-4 py-2 hover:bg-mimicbox-yellow hover:text-mimicbox-black"
-    >
-      pmessias.art
-    </a>
-    <a
-      href="https://www.instagram.com/hygordsart"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block px-4 py-2 hover:bg-mimicbox-yellow hover:text-mimicbox-black"
-    >
-      hygordsart
-    </a>
-  </div>
-</Button>
-) : (
-  <Button
-    asChild
-    className="bg-transparent border-2 border-mimicbox-yellow text-mimicbox-yellow hover:bg-mimicbox-yellow hover:text-mimicbox-black font-anton uppercase tracking-wider transition-all duration-300 group-hover:scale-105"
-  >
-    <a
-      href={method.link}
-      target={method.id === 'email' ? '_self' : '_blank'}
-      rel={method.id === 'email' ? undefined : 'noopener noreferrer'}
-      className="flex items-center space-x-2"
-    >
-      <span>{method.action}</span>
-      <ExternalLink className="w-4 h-4" />
-    </a>
-  </Button>
-)}
+                  {method.id === 'instagram' ? (
+                    <Button className="bg-transparent focus:outline-none focus:ring-0 hover:bg-transparent">
+                      <div className="bg-transparent border-2 border-mimicbox-yellow text-mimicbox-yellow font-anton uppercase tracking-wider transition-all duration-300 group-hover:scale-105 rounded-lg overflow-hidden ">
+                        <a
+                          href="https://www.instagram.com/pmessias.art"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block px-4 py-2 hover:bg-mimicbox-yellow hover:text-mimicbox-black"
+                        >
+                          pmessias.art
+                        </a>
+                        <a
+                          href="https://www.instagram.com/hygordsart"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block px-4 py-2 hover:bg-mimicbox-yellow hover:text-mimicbox-black"
+                        >
+                          hygordsart
+                        </a>
+                      </div>
+                    </Button>
+                  ) : method.id === 'email' ? (
+                    // botão nativo para garantir clique (mailto só montado no clique)
+                    <div className="inline-block">
+                      <button
+                        type="button"
+                        onClick={openMailTo}
+                        onKeyDown={(e) => handleKeyActivate(e, openMailTo)}
+                        aria-label={t('contact.email.action')}
+                        className="inline-flex items-center justify-center px-4 py-2 bg-transparent border-2 border-mimicbox-yellow text-mimicbox-yellow hover:bg-mimicbox-yellow hover:text-mimicbox-black font-anton uppercase tracking-wider transition-all duration-300 group-hover:scale-105 rounded"
+                      >
+                        <span>{method.action}</span>
+                        <ExternalLink className="w-4 h-4 ml-2" />
+                      </button>
+                    </div>
+                  ) : (
+                    <Button
+                      asChild
+                      className="bg-transparent border-2 border-mimicbox-yellow text-mimicbox-yellow hover:bg-mimicbox-yellow hover:text-mimicbox-black font-anton uppercase tracking-wider transition-all duration-300 group-hover:scale-105"
+                    >
+                      <a
+                        href={method.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-2"
+                      >
+                        <span>{method.action}</span>
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             );
@@ -144,12 +177,14 @@ export function ContactSection() {
         {/* Creative Call to Action */}
         <div className="text-center">
           <Card className="bg-gradient-to-r from-card via-card to-card border-mimicbox-yellow/30 max-w-4xl mx-auto relative overflow-hidden">
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-5" style={{
-              backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255, 229, 0, 0.3) 1px, transparent 0)`,
-              backgroundSize: '30px 30px'
-            }}></div>
-            
+            <div
+              className="absolute inset-0 opacity-5"
+              style={{
+                backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255, 229, 0, 0.3) 1px, transparent 0)`,
+                backgroundSize: '30px 30px',
+              }}
+            ></div>
+
             <CardContent className="p-12 relative z-10">
               <h3 className="font-anton text-2xl sm:text-3xl text-foreground mb-4 uppercase tracking-wide">
                 {t('contact.cta.title')}
@@ -157,48 +192,50 @@ export function ContactSection() {
               <p className="font-inter text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
                 {t('contact.cta.description')}
               </p>
-              
+
               {/* Quick Contact Options */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-mimicbox-yellow text-mimicbox-black hover:bg-mimicbox-yellow/90 font-anton text-lg uppercase tracking-wider transition-all duration-300 hover:scale-105"
+                {/* botão nativo aqui também para garantir funcionamento */}
+                <button
+                  type="button"
+                  onClick={openMailTo}
+                  onKeyDown={(e) => handleKeyActivate(e, openMailTo)}
+                  className="inline-flex items-center gap-3 px-6 py-3 bg-mimicbox-yellow text-mimicbox-black hover:bg-mimicbox-yellow/90 font-anton text-lg uppercase tracking-wider transition-all duration-300 hover:scale-105 rounded"
                 >
-                  <a href="mailto:mimicboxstudio@gmail.com" className="flex items-center space-x-2">
-                    <Mail className="w-5 h-5" />
-                    <span>{t('contact.cta.email')}</span>
-                  </a>
-                </Button>
-                
-                <span className="font-inter text-muted-foreground hidden sm:block">{t('contact.cta.or')}</span>
-                
+                  <Mail className="w-5 h-5" />
+                  <span>{t('contact.cta.email')}</span>
+                </button>
+
+                <span className="font-inter text-muted-foreground hidden sm:block">
+                  {t('contact.cta.or')}
+                </span>
+
                 <Button
                   asChild
                   size="lg"
                   variant="outline"
-                  className="border-mimicbox-yellow text-mimicbox-yellow hover:bg-mimicbox-yellow hover:text-mimicbox-yellow font-anton text-lg uppercase tracking-wider transition-all duration-300 hover:scale-105"
+                  className="border-mimicbox-yellow text-mimicbox-yellow hover:bg-mimicbox-yellow hover:text-mimicbox-black font-anton text-lg uppercase tracking-wider transition-all duration-300 hover:scale-105"
                 >
-<div className="flex gap-4">
-  <a
-    href="https://www.instagram.com/pmessias.art"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-center space-x-2"
-  >
-    <Instagram className="w-5 h-5" />
-    <span>pmessias.art</span>
-  </a>
-  <a
-    href="https://www.instagram.com/hygordsart"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-center space-x-2"
-  >
-    <Instagram className="w-5 h-5" />
-    <span>hygordsart</span>
-  </a>
-</div>
+                  <div className="flex gap-4">
+                    <a
+                      href="https://www.instagram.com/pmessias.art"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2"
+                    >
+                      <Instagram className="w-5 h-5" />
+                      <span>pmessias.art</span>
+                    </a>
+                    <a
+                      href="https://www.instagram.com/hygordsart"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2"
+                    >
+                      <Instagram className="w-5 h-5" />
+                      <span>hygordsart</span>
+                    </a>
+                  </div>
                 </Button>
               </div>
             </CardContent>

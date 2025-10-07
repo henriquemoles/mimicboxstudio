@@ -130,7 +130,7 @@ const translations = {
     'about.history.p2': 'Since then, we have collaborated on several academic projects in the field of graphic design and later transitioned into game art. We specialize in creating visual experiences that not only impress but also tell stories. We work with both independent developers and established studios, always with a focus on quality and innovation.',
     'about.partnership': 'Creative Partnership',
     'about.pedro': 'Concept Artist & Illustrator',
-    'about.hygor': 'Art Director & UI/UX Designer',
+    'about.hygor': 'Concept Artist & Illustrator',
     'about.clients.title': 'Our Clients',
     'about.clients.subtitle': 'We have the privilege of working with amazing companies around the world.',
     'about.stats.projects': 'Completed Projects',

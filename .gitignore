@@ -1,8 +1,8 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
+# ===================================
+# 🧱 DEPENDÊNCIAS E BUILDS
+# ===================================
+node_modules/
+.pnp
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -10,38 +10,74 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
+# ===================================
+# 🧪 TESTES
+# ===================================
+coverage/
 
-# next.js
-/.next/
-/out/
+# ===================================
+# ⚙️ NEXT.JS
+# ===================================
+.next/
+out/
 
-# production
-/build
+# ===================================
+# 🚀 PRODUÇÃO
+# ===================================
+build/
 
-# misc
-.DS_Store
-*.pem
+# ===================================
+# 🔥 FIREBASE
+# ===================================
+.firebaserc
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+firebase.json
+storage.rules
+database.rules.json
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
+# ===================================
+# ⚡ CONFIGURAÇÕES E VARIÁVEIS
+# ===================================
 .env*
+*.local
+*.env.*.local
 
-# vercel
-.vercel
-
-# typescript
+# ===================================
+# 🧰 TIPOS E BUILD TYPESCRIPT
+# ===================================
 *.tsbuildinfo
 next-env.d.ts
 
-# firebase 
-.firebase.json
-.storage.rules
-.firebaserc
-.firebase/
+# ===================================
+# 💻 VERCEL / DEPLOY
+# ===================================
+.vercel/
+
+# ===================================
+# 🐛 LOGS E DEBUG
+# ===================================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# ===================================
+# 🧹 MISC
+# ===================================
+.DS_Store
+Thumbs.db
+*.pem
+*.log
+*.cache
+.idea/
+.vscode/
+*.swp
+
+# ===================================
+# 📦 ARQUIVOS TEMPORÁRIOS
+# ===================================
+tmp/
+temp/
